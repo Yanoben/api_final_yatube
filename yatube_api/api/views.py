@@ -1,10 +1,10 @@
 # TODO:  Напишите свой вариант
 from django.shortcuts import get_object_or_404
 from posts.models import Comment, Follow, Group, Post
-from rest_framework import filters, status, viewsets
+from rest_framework import filters, viewsets
 from rest_framework.permissions import (IsAuthenticated,
                                         IsAuthenticatedOrReadOnly)
-from rest_framework.response import Response
+
 from .permissions import IsAuthorOrReadOnlyPermission
 from .serializers import (CommentSerializer, FollowSerializers,
                           GroupSerializer, PostSerializer)
@@ -46,9 +46,8 @@ class FollowViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ['=user__username', '=following__username']
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user, following=self.kwargs.get('following'))
-
     def get_queryset(self):
-        queryset = get_object_or_404(Follow, user=self.request.user, following=self.kwargs.get('following'))
-        return queryset.follower
+        return Follow.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
