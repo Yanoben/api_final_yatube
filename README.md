@@ -3,12 +3,13 @@
 ### Технологии в проекте
 - Python 3.7
 - Django 2.2.19
+- Django REST framework 3.12.4
 
 ### Запуск проекта в dev-режиме
 - Сначала клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/yanoben/yatube_project.git
+git clone https://github.com/yanoben/api_final_yatube.git
 ```
 
 - Установите и активируйте виртуальное окружение
@@ -27,26 +28,10 @@ pip install -r requirements.txt
 ```
 python3 manage.py runserver
 ```
-### Авторы
-Me))
 
+## Примеры запроса
 
-
-## Installing
-
-    git clone https://github.com/Yanoben/api_final_yatube
-
-
-## Install reuqirements.txt
-
-    pip3 install -r requirements.txt
-
-## And Run
-    python manage.py runserver
-
-
-
-### Request
+### GET
 
 `GET /posts/`
 
@@ -90,7 +75,7 @@ Me))
 
     ]
 
-### Request
+### GET ID
 
 `GET /posts/<int:post_id>/`
 
